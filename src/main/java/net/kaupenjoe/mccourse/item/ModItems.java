@@ -4,6 +4,7 @@ import net.kaupenjoe.mccourse.MCCourseMod;
 import net.kaupenjoe.mccourse.entity.ModEntities;
 import net.kaupenjoe.mccourse.item.custom.ChainsawItem;
 import net.kaupenjoe.mccourse.item.custom.FuelItem;
+import net.kaupenjoe.mccourse.item.custom.TomahawkItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,6 +43,9 @@ public class ModItems {
     public static final DeferredItem<Item> GIRAFFE_SPAWN_EGG = ITEMS.register("giraffe_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GIRAFFE, 0xe7d7a5, 0x7e5b41,
                     new Item.Properties()));
+
+    public static final DeferredItem<Item> TOMAHAWK = ITEMS.register("tomahawk",
+            () -> new TomahawkItem(new Item.Properties().stacksTo(16)));
 
 
     public static void register(IEventBus eventBus) {

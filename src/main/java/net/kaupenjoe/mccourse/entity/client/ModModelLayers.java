@@ -11,4 +11,8 @@ public class ModModelLayers {
     public static final ModelLayerLocation GIRAFFE = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "giraffe"), "main");
 
+
+    public static final ModelLayerLocation TOMAHAWK = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "tomahawk"), "main");
+
 }
