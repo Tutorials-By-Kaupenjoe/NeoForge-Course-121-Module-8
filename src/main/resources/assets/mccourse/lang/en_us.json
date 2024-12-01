@@ -8,6 +8,7 @@
 
   "item.mccourse.penguin_spawn_egg": "Penguin Spawn Egg",
   "item.mccourse.giraffe_spawn_egg": "Giraffe Spawn Egg",
+  "item.mccourse.warturtle_spawn_egg": "Warturtle Spawn Egg",
 
 
   "block.mccourse.black_opal_block": "Block of Black Opal",
@@ -42,5 +43,6 @@
   "itemGroup.mccourse.black_opal_blocks_tab": "Black Opal Blocks",
 
   "entity.mccourse.penguin": "Penguin",
-  "entity.mccourse.giraffe": "Giraffe"
+  "entity.mccourse.giraffe": "Giraffe",
+  "entity.mccourse.warturtle": "Warturtle"
 }

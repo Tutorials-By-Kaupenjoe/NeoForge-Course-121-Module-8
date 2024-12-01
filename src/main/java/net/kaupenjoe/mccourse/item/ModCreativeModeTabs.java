@@ -34,6 +34,7 @@ public class ModCreativeModeTabs {
 
                         pOutput.accept(ModItems.PENGUIN_SPAWN_EGG);
                         pOutput.accept(ModItems.GIRAFFE_SPAWN_EGG);
+                        pOutput.accept(ModItems.WARTURTLE_SPAWN_EGG);
 
 
                     }).build());
