@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -44,7 +45,38 @@ public class WarturtleArmorLayer extends RenderLayer<WarturtleEntity, WarturtleM
                 this.model.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
                 VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(ARMOR_MAP.get(armorItem)));
                 this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
+                this.maybeRenderColoredLayer(poseStack, bufferSource, packedLight, livingEntity, armorItem);
             }
         }
+    }
+
+    private static final ResourceLocation[] DYE_LOCATION = new ResourceLocation[]{
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/white.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/orange.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/magenta.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/light_blue.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/yellow.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/lime.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/pink.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/gray.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/light_gray.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/cyan.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/purple.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/blue.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/brown.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/green.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/red.png"),
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "textures/entity/warturtle/armor/blankies/black.png")
+    };
+
+    private void maybeRenderColoredLayer(PoseStack poseStack, MultiBufferSource buffer, int packedLight, WarturtleEntity livingEntity, WarturtleArmorItem armorItem) {
+        DyeColor dyecolor = livingEntity.getSwag();
+        ResourceLocation resourcelocation;
+        if (dyecolor != null) {
+            resourcelocation = DYE_LOCATION[dyecolor.getId()];
+        } else {
+            resourcelocation = ARMOR_MAP.get(armorItem);
+        }
+        this.model.renderToBuffer(poseStack,buffer.getBuffer(RenderType.entityCutoutNoCull(resourcelocation)), packedLight,OverlayTexture.NO_OVERLAY);
     }
 }
