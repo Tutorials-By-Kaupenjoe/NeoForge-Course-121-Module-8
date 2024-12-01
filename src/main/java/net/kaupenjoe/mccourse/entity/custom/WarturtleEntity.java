@@ -3,6 +3,7 @@ package net.kaupenjoe.mccourse.entity.custom;
 import net.kaupenjoe.mccourse.MCCourseMod;
 import net.kaupenjoe.mccourse.entity.ModEntities;
 import net.kaupenjoe.mccourse.item.ModItems;
+import net.kaupenjoe.mccourse.item.custom.WarturtleArmorItem;
 import net.kaupenjoe.mccourse.screen.custom.WarturtleMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -12,7 +13,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -310,6 +314,13 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
             setChest(TIER_3_CHEST_SLOT, false);
             dropChestInventory(TIER_3_CHEST_SLOT);
         }
+
+        if(container.getItem(0).getItem() instanceof WarturtleArmorItem) {
+            setBodyArmorItem(container.getItem(0));
+        }
+        if(container.getItem(0).isEmpty() && isWearingBodyArmor()) {
+            setBodyArmorItem(ItemStack.EMPTY);
+        }
     }
 
     private void dropChestInventory(int slot) {
@@ -402,5 +413,29 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
 
     public boolean hasInventoryChanged(Container inventory) {
         return this.inventory != inventory;
+    }
+
+    /* ARMOR */
+    public boolean hasArmorOn() {
+        return isWearingBodyArmor();
+    }
+
+    @Override
+    protected void actuallyHurt(DamageSource damageSource, float damageAmount) {
+        if (!this.canArmorAbsorb(damageSource)) {
+            super.actuallyHurt(damageSource, damageAmount);
+        } else {
+            ItemStack itemstack = this.getBodyArmorItem();
+            itemstack.hurtAndBreak(Mth.ceil(damageAmount), this, EquipmentSlot.BODY);
+
+            if(itemstack.getItem() instanceof WarturtleArmorItem warturtleArmorItem) {
+                int damagereducton = warturtleArmorItem.getDefense() / 2; // depends on what armor
+                super.actuallyHurt(damageSource, Math.max(0, damageAmount - damagereducton));
+            }
+        }
+    }
+
+    private boolean canArmorAbsorb(DamageSource damageSource) {
+        return this.hasArmorOn() && !damageSource.is(DamageTypeTags.BYPASSES_WOLF_ARMOR);
     }
 }

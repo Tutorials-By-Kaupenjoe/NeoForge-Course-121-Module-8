@@ -5,7 +5,9 @@ import net.kaupenjoe.mccourse.entity.ModEntities;
 import net.kaupenjoe.mccourse.item.custom.ChainsawItem;
 import net.kaupenjoe.mccourse.item.custom.FuelItem;
 import net.kaupenjoe.mccourse.item.custom.TomahawkItem;
+import net.kaupenjoe.mccourse.item.custom.WarturtleArmorItem;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -49,6 +51,17 @@ public class ModItems {
 
     public static final DeferredItem<Item> TOMAHAWK = ITEMS.register("tomahawk",
             () -> new TomahawkItem(new Item.Properties().stacksTo(16)));
+
+    public static final DeferredItem<Item> IRON_WARTURTLE_ARMOR = ITEMS.registerItem("iron_warturtle_armor",
+            properties -> new WarturtleArmorItem(ArmorMaterials.IRON, properties.durability(200)));
+    public static final DeferredItem<Item> GOLD_WARTURTLE_ARMOR = ITEMS.registerItem("gold_warturtle_armor",
+            properties -> new WarturtleArmorItem(ArmorMaterials.GOLD, properties.durability(400)));
+    public static final DeferredItem<Item> DIAMOND_WARTURTLE_ARMOR = ITEMS.registerItem("diamond_warturtle_armor",
+            properties -> new WarturtleArmorItem(ArmorMaterials.DIAMOND, properties.durability(600)));
+    public static final DeferredItem<Item> NETHERITE_WARTURTLE_ARMOR = ITEMS.registerItem("netherite_warturtle_armor",
+            properties -> new WarturtleArmorItem(ArmorMaterials.NETHERITE, properties.durability(800)));
+    public static final DeferredItem<Item> BLACK_OPAL_WARTURTLE_ARMOR = ITEMS.registerItem("black_opal_warturtle_armor",
+            properties -> new WarturtleArmorItem(ArmorMaterials.IRON, properties.durability(1000)));
 
 
     public static void register(IEventBus eventBus) {

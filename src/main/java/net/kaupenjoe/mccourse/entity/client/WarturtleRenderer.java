@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 public class WarturtleRenderer extends MobRenderer<WarturtleEntity, WarturtleModel<WarturtleEntity>> {
     public WarturtleRenderer(EntityRendererProvider.Context context) {
         super(context, new WarturtleModel<>(context.bakeLayer(ModModelLayers.WARTURTLE)), 1.25f);
+        this.addLayer(new WarturtleArmorLayer(this, context.getModelSet()));
     }
 
     @Override

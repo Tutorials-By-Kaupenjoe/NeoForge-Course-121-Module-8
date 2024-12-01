@@ -1,6 +1,7 @@
 package net.kaupenjoe.mccourse.screen.custom;
 
 import net.kaupenjoe.mccourse.entity.custom.WarturtleEntity;
+import net.kaupenjoe.mccourse.item.custom.WarturtleArmorItem;
 import net.kaupenjoe.mccourse.screen.ModMenuTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -29,17 +30,25 @@ public class WarturtleMenu extends AbstractContainerMenu {
         return new WarturtleMenu(i, inventory, new SimpleContainer(28), warturtleEntity, 4);
     }
 
-    public WarturtleMenu(int containerId, Inventory inventory, Container horseContainer, final WarturtleEntity warturtleEntity, int columns) {
+    public WarturtleMenu(int containerId, Inventory inventory, Container warturtleContainer, final WarturtleEntity warturtleEntity, int columns) {
         super(ModMenuTypes.WARTURTLE_MENU.get(), containerId);
-        this.warturtleContainer = horseContainer;
+        this.warturtleContainer = warturtleContainer;
         this.warturtle = warturtleEntity;
-        horseContainer.startOpen(inventory.player);
+        warturtleContainer.startOpen(inventory.player);
 
-        this.addSlot(new Slot(horseContainer, 0, 8, 63));  // Armor Slot
-        this.addSlot(new Slot(horseContainer, 1, 44, 63)); // Dye Slot
+        // Armor Slot
+        this.addSlot(new Slot(warturtleContainer, 0, 8, 63) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.getItem() instanceof WarturtleArmorItem;
+            }
+        });
+
+        // Dye Slot
+        this.addSlot(new Slot(warturtleContainer, 1, 44, 63));
 
         // Chest Slot Tier 1
-        this.addSlot(new Slot(horseContainer, 2, 72, 27) {
+        this.addSlot(new Slot(warturtleContainer, 2, 72, 27) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.CHEST);
@@ -57,7 +66,7 @@ public class WarturtleMenu extends AbstractContainerMenu {
         });
 
         // Chest Slot Tier 2
-        this.addSlot(new Slot(horseContainer, 3, 72, 45) {
+        this.addSlot(new Slot(warturtleContainer, 3, 72, 45) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.CHEST) && warturtleEntity.hasTier1Chest();
@@ -75,7 +84,7 @@ public class WarturtleMenu extends AbstractContainerMenu {
         });
 
         // Chest Slot Tier 3
-        this.addSlot(new Slot(horseContainer, 4, 72, 63) {
+        this.addSlot(new Slot(warturtleContainer, 4, 72, 63) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(Items.CHEST) && warturtleEntity.hasTier2Chest();
@@ -89,7 +98,7 @@ public class WarturtleMenu extends AbstractContainerMenu {
 
         if (columns > 0) {
             for (int l = 0; l < columns; l++) {
-                this.addSlot(new Slot(horseContainer, 5 + l, 98 + l * 18, 27) {
+                this.addSlot(new Slot(warturtleContainer, 5 + l, 98 + l * 18, 27) {
                     @Override
                     public boolean isActive() {
                         return warturtleEntity.hasTier1Chest();
@@ -97,7 +106,7 @@ public class WarturtleMenu extends AbstractContainerMenu {
                 });
             }
             for (int l = 0; l < columns; l++) {
-                this.addSlot(new Slot(horseContainer, 5 + l + columns, 98 + l * 18, 27 + 18){
+                this.addSlot(new Slot(warturtleContainer, 5 + l + columns, 98 + l * 18, 27 + 18){
                     @Override
                     public boolean isActive() {
                         return warturtleEntity.hasTier2Chest();
@@ -105,7 +114,7 @@ public class WarturtleMenu extends AbstractContainerMenu {
                 });
             }
             for (int l = 0; l < columns; l++) {
-                this.addSlot(new Slot(horseContainer, 5 + l + 2 * columns, 98 + l * 18, 27 + 2 * 18){
+                this.addSlot(new Slot(warturtleContainer, 5 + l + 2 * columns, 98 + l * 18, 27 + 2 * 18){
                     @Override
                     public boolean isActive() {
                         return warturtleEntity.hasTier3Chest();

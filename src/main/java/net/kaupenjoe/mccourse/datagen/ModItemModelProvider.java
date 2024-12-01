@@ -23,6 +23,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TOMATO.get());
         basicItem(ModItems.FROSTFIRE_ICE.get());
 
+        basicItem(ModItems.IRON_WARTURTLE_ARMOR.get());
+        basicItem(ModItems.GOLD_WARTURTLE_ARMOR.get());
+        basicItem(ModItems.DIAMOND_WARTURTLE_ARMOR.get());
+        basicItem(ModItems.NETHERITE_WARTURTLE_ARMOR.get());
+        basicItem(ModItems.BLACK_OPAL_WARTURTLE_ARMOR.get());
+
         buttonItem(ModBlocks.BLACK_OPAL_BUTTON, ModBlocks.BLACK_OPAL_BLOCK);
         fenceItem(ModBlocks.BLACK_OPAL_FENCE, ModBlocks.BLACK_OPAL_BLOCK);
         wallItem(ModBlocks.BLACK_OPAL_WALL, ModBlocks.BLACK_OPAL_BLOCK);

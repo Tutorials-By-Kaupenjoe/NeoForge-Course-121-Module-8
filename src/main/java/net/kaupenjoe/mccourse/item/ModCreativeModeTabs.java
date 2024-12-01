@@ -36,6 +36,12 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.GIRAFFE_SPAWN_EGG);
                         pOutput.accept(ModItems.WARTURTLE_SPAWN_EGG);
 
+                        pOutput.accept(ModItems.IRON_WARTURTLE_ARMOR);
+                        pOutput.accept(ModItems.GOLD_WARTURTLE_ARMOR);
+                        pOutput.accept(ModItems.DIAMOND_WARTURTLE_ARMOR);
+                        pOutput.accept(ModItems.NETHERITE_WARTURTLE_ARMOR);
+                        pOutput.accept(ModItems.BLACK_OPAL_WARTURTLE_ARMOR);
+
 
                     }).build());
 
