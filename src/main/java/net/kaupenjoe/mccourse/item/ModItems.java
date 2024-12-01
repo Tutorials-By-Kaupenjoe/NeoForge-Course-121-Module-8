@@ -39,6 +39,9 @@ public class ModItems {
     public static final DeferredItem<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.PENGUIN, 0xdebd47, 0xccbfbe,
                     new Item.Properties()));
+    public static final DeferredItem<Item> GIRAFFE_SPAWN_EGG = ITEMS.register("giraffe_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GIRAFFE, 0xe7d7a5, 0x7e5b41,
+                    new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

@@ -8,4 +8,7 @@ public class ModModelLayers {
     public static final ModelLayerLocation PENGUIN = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "penguin"), "main");
 
+    public static final ModelLayerLocation GIRAFFE = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MCCourseMod.MOD_ID, "giraffe"), "main");
+
 }

@@ -29,6 +29,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.FROSTFIRE_ICE);
 
                         pOutput.accept(ModItems.PENGUIN_SPAWN_EGG);
+                        pOutput.accept(ModItems.GIRAFFE_SPAWN_EGG);
 
                     }).build());
 

@@ -2,6 +2,7 @@ package net.kaupenjoe.mccourse;
 
 import net.kaupenjoe.mccourse.block.ModBlocks;
 import net.kaupenjoe.mccourse.entity.ModEntities;
+import net.kaupenjoe.mccourse.entity.client.GiraffeRenderer;
 import net.kaupenjoe.mccourse.entity.client.PenguinRenderer;
 import net.kaupenjoe.mccourse.item.ModCreativeModeTabs;
 import net.kaupenjoe.mccourse.item.ModItems;
@@ -93,6 +94,7 @@ public class MCCourseMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.PENGUIN.get(), PenguinRenderer::new);
+            EntityRenderers.register(ModEntities.GIRAFFE.get(), GiraffeRenderer::new);
         }
     }
 }

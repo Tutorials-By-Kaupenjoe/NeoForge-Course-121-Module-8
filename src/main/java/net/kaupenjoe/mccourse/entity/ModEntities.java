@@ -1,6 +1,7 @@
 package net.kaupenjoe.mccourse.entity;
 
 import net.kaupenjoe.mccourse.MCCourseMod;
+import net.kaupenjoe.mccourse.entity.custom.GiraffeEntity;
 import net.kaupenjoe.mccourse.entity.custom.PenguinEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -17,6 +18,10 @@ public class ModEntities {
     public static final Supplier<EntityType<PenguinEntity>> PENGUIN =
             ENTITY_TYPES.register("penguin", () -> EntityType.Builder.of(PenguinEntity::new, MobCategory.CREATURE)
                     .sized(0.75f, 0.95f).build("penguin"));
+
+    public static final Supplier<EntityType<GiraffeEntity>> GIRAFFE =
+            ENTITY_TYPES.register("giraffe", () -> EntityType.Builder.of(GiraffeEntity::new, MobCategory.CREATURE)
+                    .sized(1.5f, 2.5f).build("giraffe"));
 
 
     public static void register(IEventBus eventBus) {
